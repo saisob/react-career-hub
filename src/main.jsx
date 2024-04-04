@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
   RouterProvider,
+  useFetcher,
 } from "react-router-dom";
 import './index.css'
 import Root from './components/Root/Root';
 import Home from './components/Home/Home';
 import AppliedJobs from './components/AppliedJobs/AppliedJobs';
 import Error from './components/Error/Error';
+import JobDetails from './components/JobDetails/JobDetails';
 
 
 const router = createBrowserRouter([
@@ -25,6 +27,11 @@ const router = createBrowserRouter([
         path:'/AppliedJobs',
         element:<AppliedJobs></AppliedJobs>
       },
+      {
+        path:'/job/:id',
+        element:<JobDetails></JobDetails>,
+        loader:()=> fetch('../jobs.json')
+      }
     ]
   },
 ]);
